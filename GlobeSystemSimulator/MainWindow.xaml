@@ -1,0 +1,100 @@
+﻿<Window x:Class="GlobeSystemSimulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:h="http://helix-toolkit.org/wpf"
+        xmlns:local="clr-namespace:GlobeSystemSimulator"
+        Title="Globe Catheter System Simulator" Height="800" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 3D Visualization Area -->
+        <h:HelixViewport3D x:Name="viewport" Grid.Column="0" 
+                          Background="LightGray" ShowCameraInfo="False">
+            <h:HelixViewport3D.Camera>
+                <PerspectiveCamera Position="0,0,15" LookDirection="0,0,-1" UpDirection="0,1,0"
+                                  FieldOfView="45"/>
+            </h:HelixViewport3D.Camera>
+
+            <!-- Coordinate System -->
+            <h:GridLinesVisual3D Width="10" Length="10" MinorDistance="1" MajorDistance="1" 
+                               Thickness="0.03" Center="0,0,0"/>
+        </h:HelixViewport3D>
+
+        <!-- Control Panel -->
+        <ScrollViewer Grid.Column="1" Background="#f0f0f0" Padding="10">
+            <StackPanel>
+                <GroupBox Header="Catheter Controls" Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Text="X Position:" FontWeight="Bold" Margin="0,5"/>
+                        <Slider x:Name="sliderX" Minimum="-5" Maximum="5" Value="0" 
+                               SmallChange="0.1" LargeChange="1" TickFrequency="1"
+                               ValueChanged="Slider_ValueChanged"/>
+                        <TextBlock Text="{Binding Value, ElementName=sliderX, StringFormat=X: {0:F1}}"/>
+
+                        <TextBlock Text="Y Position:" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <Slider x:Name="sliderY" Minimum="-5" Maximum="5" Value="0"
+                               SmallChange="0.1" LargeChange="1" TickFrequency="1"
+                               ValueChanged="Slider_ValueChanged"/>
+                        <TextBlock Text="{Binding Value, ElementName=sliderY, StringFormat=Y: {0:F1}}"/>
+
+                        <TextBlock Text="Z Position:" FontWeight="Bold" Margin="0,10,0,5"/>
+                        <Slider x:Name="sliderZ" Minimum="0" Maximum="10" Value="3"
+                               SmallChange="0.1" LargeChange="1" TickFrequency="1"
+                               ValueChanged="Slider_ValueChanged"/>
+                        <TextBlock Text="{Binding Value, ElementName=sliderZ, StringFormat=Z: {0:F1}}"/>
+
+                        <Button x:Name="btnReset" Content="Reset Position" 
+                               Click="BtnReset_Click" Margin="0,10" Padding="10,5"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Electrode Signals" Margin="0,0,0,10">
+                    <ItemsControl x:Name="electrodeSignalsList" Height="200">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#ccc" BorderThickness="0,0,0,1" Padding="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Name}" Grid.Column="0" FontWeight="Bold"/>
+                                        <!-- Fixed: Removed duplicate Background -->
+                                        <Border Grid.Column="1" Margin="5,2" Height="15" HorizontalAlignment="Stretch">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="{Binding Color}"/>
+                                            </Border.Background>
+                                            <Border.Width>
+                                                <Binding Path="SignalStrength">
+                                                    <Binding.Converter>
+                                                        <local:ProgressConverter/>
+                                                    </Binding.Converter>
+                                                </Binding>
+                                            </Border.Width>
+                                        </Border>
+                                        <TextBlock Grid.Column="2" Text="{Binding SignalPercent}" 
+                                                  HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+
+                <GroupBox Header="Mapping Data">
+                    <StackPanel>
+                        <TextBlock x:Name="txtContactInfo" Margin="5" TextWrapping="Wrap"/>
+                        <TextBlock x:Name="txtMappingProgress" Margin="5"/>
+                        <ProgressBar x:Name="progressMapping" Height="15" Margin="5" Maximum="100"/>
+                        <Button x:Name="btnAutoMap" Content="Start Auto-Mapping" 
+                               Click="BtnAutoMap_Click" Margin="0,10" Padding="10,5"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
