@@ -1,13 +1,10 @@
-
-```markdown
 # Cardiac Electrophysiology Mapping Simulator
 
-🏥 **Medical Device Simulation** | 🎯 **WPF 3D Visualization** | ⚡ **Real-time Signal Processing**
+![Simulator Demo](https://github.com/user-attachments/assets/9bf15e6f-f5e5-41ba-89d5-c8c8501565ae)
+
+🏥 Medical Device Simulation | 🎯 WPF 3D Visualization | ⚡ Real-time Signal Processing
 
 An interactive 3D simulator that demonstrates advanced cardiac mapping catheter technology used in electrophysiology procedures like atrial fibrillation ablation. This project simulates the functionality of a Globe catheter system for real-time cardiac surface mapping and signal detection.
-
-<img width="887" height="596" alt="image" src="https://github.com/user-attachments/assets/9bf15e6f-f5e5-41ba-89d5-c8c8501565ae" />
-
 
 ## ✨ Key Features
 
@@ -31,6 +28,7 @@ An interactive 3D simulator that demonstrates advanced cardiac mapping catheter 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - .NET 8.0 SDK
 - Visual Studio 2022 or later
 - Windows 10/11
@@ -46,28 +44,33 @@ An interactive 3D simulator that demonstrates advanced cardiac mapping catheter 
 2. **Open in Visual Studio**
    - Open `GlobeSystemSimulator.sln`
    - Restore NuGet packages
-   - Build the solution (Ctrl+Shift+B)
 
-3. **Run the application**
-   - Press F5 to start debugging
-   - Or Ctrl+F5 to run without debugging
+3. **Build the solution**
+   - Press `Ctrl+Shift+B`
 
-### Using the Simulator
+4. **Run the application**
+   - Press `F5` to start debugging
+   - Or `Ctrl+F5` to run without debugging
 
-1. **Manual Control**:
-   - Use the X, Y, Z sliders to position the catheter
-   - Observe real-time signal changes in electrode displays
-   - Watch electrode colors change based on contact quality
+## 🎮 Using the Simulator
 
-2. **Auto-Mapping**:
-   - Click "Start Auto-Mapping" for automated demonstration
-   - The system will automatically navigate around the heart surface
-   - Monitor mapping progress in real-time
+### Manual Control
 
-3. **Signal Interpretation**:
-   - **Red Electrodes**: Strong signal (close to heart surface)
-   - **Blue Electrodes**: Weak signal (far from heart surface)
-   - **Progress Bars**: Visual representation of signal strength
+- Use the X, Y, Z sliders to position the catheter
+- Observe real-time signal changes in electrode displays
+- Watch electrode colors change based on contact quality
+
+### Auto-Mapping
+
+- Click "Start Auto-Mapping" for automated demonstration
+- The system will automatically navigate around the heart surface
+- Monitor mapping progress in real-time
+
+### Signal Interpretation
+
+- **Red Electrodes**: Strong signal (close to heart surface)
+- **Blue Electrodes**: Weak signal (far from heart surface)
+- **Progress Bars**: Visual representation of signal strength
 
 ## 📁 Project Structure
 
@@ -76,8 +79,8 @@ GlobeSystemSimulator/
 ├── MainWindow.xaml          # Main application UI with 3D viewport
 ├── MainWindow.xaml.cs       # Application logic and event handlers
 ├── CatheterSimulator.cs     # Core simulation engine and 3D modeling
-├── Electrode.cs            # Electrode data model with INotifyPropertyChanged
-├── ProgressConverter.cs    # UI data binding converter for signal visualization
+├── Electrode.cs             # Electrode data model with INotifyPropertyChanged
+├── ProgressConverter.cs     # UI data binding converter for signal visualization
 └── GlobeSystemSimulator.csproj
 ```
 
@@ -85,17 +88,17 @@ GlobeSystemSimulator/
 
 ### Core Components
 
-**3D Heart Model**
+#### 3D Heart Model
 - Procedurally generated spherical geometry with organic variations
 - Realistic surface for distance-based signal calculations
 - Optimized mesh for smooth rendering
 
-**Catheter System**
+#### Catheter System
 - 8-electrode circular array simulating real catheter designs
 - Real-time position and signal calculations
 - Visual connections between catheter body and electrodes
 
-**Signal Processing**
+#### Signal Processing
 - Distance-based signal strength algorithms
 - Quadratic falloff for realistic signal degradation
 - Real-time updates with property change notifications
@@ -109,7 +112,8 @@ GlobeSystemSimulator/
 
 ## 🏥 Medical Context
 
-This simulator represents the next generation of **cardiac electrophysiology mapping systems** used for:
+This simulator represents the next generation of cardiac electrophysiology mapping systems used for:
+
 - Atrial Fibrillation (AFib) ablation procedures
 - Ventricular Tachycardia (VT) mapping
 - Complex arrhythmia diagnosis
@@ -118,6 +122,7 @@ This simulator represents the next generation of **cardiac electrophysiology map
 ## 🤝 Contributing
 
 Contributions are welcome! Areas for enhancement:
+
 - Additional catheter designs and configurations
 - More sophisticated heart chamber geometries
 - Advanced signal processing algorithms
@@ -126,15 +131,10 @@ Contributions are welcome! Areas for enhancement:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- **Helix Toolkit** team for excellent 3D WPF components
+- Helix Toolkit team for excellent 3D WPF components
 - Medical device industry for inspiration in electrophysiology technology
 - Cardiac electrophysiologists advancing the field of arrhythmia treatment
-
----
-
-**Built with 💓 using C# and WPF** | *Demonstrating the future of cardiac mapping technology*
-```
